@@ -1,0 +1,6 @@
+[submodule "vendors/frontier"]
+	path = vendors/frontier
+	url = git@github.com:paritytech/frontier.git
+[submodule "vendors/orml"]
+	path = vendors/orml
+	url = git@github.com:open-web3-stack/open-runtime-module-library.git

@@ -25,7 +25,7 @@ use crate::service::{new_partial, new_full_base, NewFullBase};
 
 impl SubstrateCli for Cli {
 	fn impl_name() -> String {
-		"ZΞRO".into()
+		"SUBZΞRO".into()
 	}
 
 	fn impl_version() -> String {
@@ -41,7 +41,7 @@ impl SubstrateCli for Cli {
 	}
 
 	fn support_url() -> String {
-		"https://github.com/playzero/subzero-node/issues/new".into()
+		"https://github.com/playzero/subzero/issues/new".into()
 	}
 
 	fn copyright_start_year() -> i32 {
@@ -50,13 +50,18 @@ impl SubstrateCli for Cli {
 
 	fn load_spec(&self, id: &str) -> std::result::Result<Box<dyn sc_service::ChainSpec>, String> {
 		Ok(match id {
+
 			"dev" => Box::new(chain_spec::development_config()),
 			"local" => Box::new(chain_spec::local_testnet_config()),
-			"" | "fir" | "flaming-fir" => Box::new(chain_spec::flaming_fir_config()?),
 			"staging" => Box::new(chain_spec::staging_testnet_config()),
+
+			"fir" | "flaming-fir" => Box::new(chain_spec::flaming_fir_config()?),
+			"" | "zero" | "zero-alphaville" => Box::new(chain_spec::zero_alphaville_config()?),
+
 			path => Box::new(chain_spec::ChainSpec::from_json_file(
 				std::path::PathBuf::from(path),
 			)?),
+
 		})
 	}
 

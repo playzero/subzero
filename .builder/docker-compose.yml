@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+
+  subzero:
+    image: playzero/subzero:latest
+    restart: unless-stopped
+    user: "$UID:$GID"
+    ports:
+      - "${PORT_P2P}:30333"
+      - "${PORT_WSS}:9944"
+      - "${PORT_RPC}:9933"
+      - "${PORT_PRO}:9615"
+    volumes:
+      - ${DATA_DIR}:/data
+    command: [
+        "/usr/local/bin/subzero",
+        "--name", "${NAME}",
+        "--validator",
+        "--ws-external",
+        "--rpc-external",
+        "--rpc-cors", "all",
+        "--rpc-methods", "unsafe",
+        # "--public-addr","${IP}",
+        "--telemetry-url", "wss://telemetry.polkadot.io/submit/ 5"
+      ]
+    # environment:
+    #   - VIRTUAL_HOST=${DOMAINS}
+    #   - VIRTUAL_PORT=9944
+    #   - LETSENCRYPT_HOST=${DOMAINS}
+    #   - LETSENCRYPT_EMAIL=${EMAIL}
+
+# networks:
+#   default:
+#     external:
+#       name: webproxy

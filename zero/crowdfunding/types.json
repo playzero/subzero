@@ -1,0 +1,18 @@
+{
+	"Funding": {
+		"funding_id": "Hash",
+		"manager": "AccountId",
+		"project_name": "Vec<u8>",
+		"target_money": "Balance",
+		"expiry": "BlockNumber",
+		"status": "u64"
+	},
+	"Request": {
+		"request_id": "Hash",
+		"funding_id": "Hash",
+		"purpose": "Vec<u8>",
+		"cost": "Balance",
+		"expiry": "BlockNumber",
+		"status": "u64"
+	}
+}

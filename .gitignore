@@ -22,3 +22,12 @@ rls*.log
 **/hfuzz_target/
 **/hfuzz_workspace/
 .cargo/
+
+
+data/
+tmp/
+.env
+.maintain
+.github
+**/nodekey*
+**/bootnodes

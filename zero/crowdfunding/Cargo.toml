@@ -1,0 +1,45 @@
+[package]
+name = "zero-crowdfunding"
+version = "0.0.1"
+authors = ['zero']
+repository = ''
+edition = "2018"
+license = "GPL-3.0-or-later"
+description = "A crowdfunding factory"
+
+[package.metadata.substrate]
+categories = [
+	"pallet",
+]
+compatibility_version = "2.0.0"
+
+[features]
+default = ['std']
+std = [
+	'parity-scale-codec/std',
+	'frame-support/std',
+	'frame-system/std',
+	'pallet-balances/std',
+	'sp-runtime/std',
+	'sp-std/std',
+	'sp-core/std',
+	'sp-storage/std',
+	'serde/std',
+]
+
+[dependencies]
+parity-scale-codec = { package = "parity-scale-codec", version = "1.3.4", default-features = false }
+serde = { version = "1.0.101", optional = true, features = ["derive"] }
+
+sp-runtime = { version = "2.0.0", default-features = false, path = "../../primitives/runtime" }
+sp-storage = { version = "2.0.0", default-features = false, path = "../../primitives/storage" }
+sp-std = { version = "2.0.0", default-features = false, path = "../../primitives/std" }
+sp-core = { version = "2.0.0", default-features = false, path = "../../primitives/core" }
+
+frame-support = { version = "2.0.0", default-features = false, path = "../../frame/support" }
+frame-system = { version = "2.0.0", default-features = false, path = "../../frame/system" }
+pallet-balances = { version = "2.0.0", default-features = false, path = "../../frame/balances" }
+
+[dev-dependencies]
+sp-core = { version = "2.0.0", default-features = false, path = "../../primitives/core" }
+sp-io = { version = "2.0.0", default-features = false, path = "../../primitives/io" }

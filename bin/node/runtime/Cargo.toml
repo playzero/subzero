@@ -21,8 +21,10 @@ static_assertions = "1.1.0"
 hex-literal = { version = "0.3.1", optional = true }
 
 # primitives
-sp-authority-discovery = { version = "2.0.0", default-features = false, path = "../../../primitives/authority-discovery" }
 sp-consensus-babe = { version = "0.8.0", default-features = false, path = "../../../primitives/consensus/babe" }
+sp-consensus-aura = { version = "0.8.0", default-features = false, path = "../../../primitives/consensus/aura" }
+
+sp-authority-discovery = { version = "2.0.0", default-features = false, path = "../../../primitives/authority-discovery" }
 sp-block-builder = { path = "../../../primitives/block-builder", default-features = false, version = "2.0.0"}
 sp-inherents = { version = "2.0.0", default-features = false, path = "../../../primitives/inherents" }
 node-primitives = { version = "2.0.0", default-features = false, path = "../primitives" }
@@ -37,16 +39,21 @@ sp-session = { version = "2.0.0", default-features = false, path = "../../../pri
 sp-transaction-pool = { version = "2.0.0", default-features = false, path = "../../../primitives/transaction-pool" }
 sp-version = { version = "2.0.0", default-features = false, path = "../../../primitives/version" }
 
-# frame dependencies
+# frame
+
 frame-executive = { version = "2.0.0", default-features = false, path = "../../../frame/executive" }
 frame-benchmarking = { version = "2.0.0", default-features = false, path = "../../../frame/benchmarking", optional = true }
 frame-support = { version = "2.0.0", default-features = false, path = "../../../frame/support" }
 frame-system = { version = "2.0.0", default-features = false, path = "../../../frame/system" }
 frame-system-benchmarking = { version = "2.0.0", default-features = false, path = "../../../frame/system/benchmarking", optional = true }
 frame-system-rpc-runtime-api = { version = "2.0.0", default-features = false, path = "../../../frame/system/rpc/runtime-api/" }
+
+# pallets
+
 pallet-authority-discovery = { version = "2.0.0", default-features = false, path = "../../../frame/authority-discovery" }
 pallet-authorship = { version = "2.0.0", default-features = false, path = "../../../frame/authorship" }
 pallet-babe = { version = "2.0.0", default-features = false, path = "../../../frame/babe" }
+pallet-aura = { version = "2.0.0", default-features = false, path = "../../../frame/aura" }
 pallet-balances = { version = "2.0.0", default-features = false, path = "../../../frame/balances" }
 pallet-collective = { version = "2.0.0", default-features = false, path = "../../../frame/collective" }
 pallet-contracts = { version = "2.0.0", default-features = false, path = "../../../frame/contracts" }
@@ -80,6 +87,20 @@ pallet-transaction-payment = { version = "2.0.0", default-features = false, path
 pallet-transaction-payment-rpc-runtime-api = { version = "2.0.0", default-features = false, path = "../../../frame/transaction-payment/rpc/runtime-api/" }
 pallet-vesting = { version = "2.0.0", default-features = false, path = "../../../frame/vesting" }
 
+# evm
+
+# pallet-ethereum = { version = "0.1.0", default-features = false, path = "../../../vendors/frontier/frame/ethereum" }
+# pallet-evm = { version = "2.0.0", default-features = false, path = "../../../frame/evm" }
+
+# assets
+
+pallet-assets = { version = "2.0.0", default-features = false, path = "../../../frame/assets" }
+crowdfunding-factory = { version = "0.0.1", default-features = false, path = "../../../zero/crowdfunding-factory" }
+# zero-crowdfunding = { version = "0.0.1", default-features = false, path = "../../../zero/crowdfunding" }
+# skillz = { version = "0.0.1", default-features = false, path = "../../../zero/skillz" }
+
+#
+
 [build-dependencies]
 wasm-builder-runner = { version = "1.0.5", package = "substrate-wasm-builder-runner", path = "../../../utils/wasm-builder-runner" }
 
@@ -93,8 +114,13 @@ std = [
 	"sp-authority-discovery/std",
 	"pallet-authority-discovery/std",
 	"pallet-authorship/std",
+
 	"sp-consensus-babe/std",
 	"pallet-babe/std",
+
+	"sp-consensus-aura/std",
+	"pallet-aura/std",
+
 	"pallet-balances/std",
 	"sp-block-builder/std",
 	"codec/std",
@@ -144,6 +170,17 @@ std = [
 	"pallet-society/std",
 	"pallet-recovery/std",
 	"pallet-vesting/std",
+
+	#
+
+	# "pallet-evm/std",
+	# "pallet-ethereum/std",
+	# "pallet-assets/std",
+
+	"crowdfunding-factory/std",
+
+	# "skillz/std",
+
 ]
 runtime-benchmarks = [
 	"frame-benchmarking",
