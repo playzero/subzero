@@ -31,8 +31,7 @@ use frame_support::{
 		constants::{BlockExecutionWeight, ExtrinsicBaseWeight, RocksDbWeight, WEIGHT_PER_SECOND},
 	},
 	traits::{
-		// orml ->
-		// Currency,
+		Currency,
 		Imbalance, KeyOwnerProofSystem, OnUnbalanced, Randomness, LockIdentifier},
 };
 use frame_system::{EnsureRoot, EnsureOneOf};
@@ -91,20 +90,10 @@ use sp_runtime::generic::Era;
 /// Weights for pallets used in the runtime.
 mod weights;
 
-// orml
-//
-use orml_currencies::{BasicCurrencyAdapter, Currency};
-use orml_tokens::CurrencyAdapter;
-use orml_traits::{create_median_value_data_provider, DataFeeder, DataProviderExtended};
-
 // custom pallets
-//
-use crowdfunding_factory as crowdfunding;
+use crowdfunding;
 // use nft_factory as nft;
 // use skillz;
-
-// might be needed for multi currency?
-// use pallet_assets as assets;
 
 // Make the WASM binary available.
 #[cfg(feature = "std")]
@@ -899,17 +888,17 @@ impl pallet_society::Trait for Runtime {
 	type ChallengePeriod = ChallengePeriod;
 }
 
-// parameter_types! {
-// 	pub const MinVestedTransfer: Balance = 100 * DOLLARS;
-// }
+parameter_types! {
+	pub const MinVestedTransfer: Balance = 100 * DOLLARS;
+}
 
-// impl pallet_vesting::Trait for Runtime {
-// 	type Event = Event;
-// 	type Currency = Balances;
-// 	type BlockNumberToBalance = ConvertInto;
-// 	type MinVestedTransfer = MinVestedTransfer;
-// 	type WeightInfo = weights::pallet_vesting::WeightInfo<Runtime>;
-// }
+impl pallet_vesting::Trait for Runtime {
+	type Event = Event;
+	type Currency = Balances;
+	type BlockNumberToBalance = ConvertInto;
+	type MinVestedTransfer = MinVestedTransfer;
+	type WeightInfo = weights::pallet_vesting::WeightInfo<Runtime>;
+}
 
 //
 //	ASSETS
@@ -956,76 +945,53 @@ impl crowdfunding::Trait for Runtime {
 // nft
 //
 
-parameter_types! {
-	pub const CreateClassDeposit: Balance = 500 * MILLICENTS;
-	pub const CreateTokenDeposit: Balance = 100 * MILLICENTS;
-}
+// parameter_types! {
+// 	pub const CreateClassDeposit: Balance = 500 * MILLICENTS;
+// 	pub const CreateTokenDeposit: Balance = 100 * MILLICENTS;
+// }
 
-impl nft::Trait for Runtime {
-	type Event = Event;
-	type CreateClassDeposit = CreateClassDeposit;
-	type CreateTokenDeposit = CreateTokenDeposit;
-	type ModuleId = NftModuleId;
-	type Currency = Currency<Runtime, GetNativeCurrencyId>;
-	type WeightInfo = weights::nft::WeightInfo<Runtime>;
-}
+// impl nft::Trait for Runtime {
+// 	type Event = Event;
+// 	type CreateClassDeposit = CreateClassDeposit;
+// 	type CreateTokenDeposit = CreateTokenDeposit;
+// 	type ModuleId = NftModuleId;
+// 	type Currency = Currency<Runtime, GetNativeCurrencyId>;
+// 	type WeightInfo = weights::nft::WeightInfo<Runtime>;
+// }
 
-impl orml_nft::Trait for Runtime {
-	type ClassId = u64;
-	type TokenId = u64;
-	type ClassData = nft::ClassData;
-	type TokenData = nft::TokenData;
-}
+// impl orml_nft::Trait for Runtime {
+// 	type ClassId = u64;
+// 	type TokenId = u64;
+// 	type ClassData = nft::ClassData;
+// 	type TokenData = nft::TokenData;
+// }
 
-//
-//
-//
+// //
+// //
+// //
 
-impl orml_tokens::Trait for Runtime {
-	type Event = Event;
-	type Balance = Balance;
-	type Amount = Amount;
-	type CurrencyId = CurrencyId;
-	type OnReceived = module_accounts::Module<Runtime>;
-	type WeightInfo = ();
-}
+// impl orml_tokens::Trait for Runtime {
+// 	type Event = Event;
+// 	type Balance = Balance;
+// 	type Amount = Amount;
+// 	type CurrencyId = CurrencyId;
+// 	type OnReceived = module_accounts::Module<Runtime>;
+// 	type WeightInfo = ();
+// }
 
-parameter_types! {
-	pub const GetNativeCurrencyId: CurrencyId = CurrencyId::Token(TokenSymbol::ACA);
-	pub const GetStableCurrencyId: CurrencyId = CurrencyId::Token(TokenSymbol::AUSD);
-	pub const GetLDOTCurrencyId: CurrencyId = CurrencyId::Token(TokenSymbol::LDOT);
-}
+// parameter_types! {
+// 	pub const GetNativeCurrencyId: CurrencyId = CurrencyId::Token(TokenSymbol::ACA);
+// 	pub const GetStableCurrencyId: CurrencyId = CurrencyId::Token(TokenSymbol::AUSD);
+// 	pub const GetLDOTCurrencyId: CurrencyId = CurrencyId::Token(TokenSymbol::LDOT);
+// }
 
-impl orml_currencies::Trait for Runtime {
-	type Event = Event;
-	type MultiCurrency = Tokens;
-	type NativeCurrency = BasicCurrencyAdapter<Runtime, Balances, Amount, BlockNumber>;
-	type GetNativeCurrencyId = GetNativeCurrencyId;
-	type WeightInfo = ();
-}
-
-parameter_types! {
-	pub const MinVestedTransfer: Balance = 100 * DOLLARS;
-}
-
-impl orml_vesting::Trait for Runtime {
-	type Event = Event;
-	type Currency = pallet_balances::Module<Runtime>;
-	type MinVestedTransfer = MinVestedTransfer;
-	type VestedTransferOrigin = EnsureRootOrAcalaTreasury;
-	type WeightInfo = ();
-}
-
-parameter_types! {
-	pub const UpdateFrequency: BlockNumber = 10;
-}
-
-impl orml_gradually_update::Trait for Runtime {
-	type Event = Event;
-	type UpdateFrequency = UpdateFrequency;
-	type DispatchOrigin = EnsureRoot<AccountId>;
-	type WeightInfo = ();
-}
+// impl orml_currencies::Trait for Runtime {
+// 	type Event = Event;
+// 	type MultiCurrency = Tokens;
+// 	type NativeCurrency = BasicCurrencyAdapter<Runtime, Balances, Amount, BlockNumber>;
+// 	type GetNativeCurrencyId = GetNativeCurrencyId;
+// 	type WeightInfo = ();
+// }
 
 //
 // evm
@@ -1088,7 +1054,7 @@ construct_runtime!(
 		Proxy: pallet_proxy::{Module, Call, Storage, Event<T>},
 		Identity: pallet_identity::{Module, Call, Storage, Event<T>},
 		Recovery: pallet_recovery::{Module, Call, Storage, Event<T>},
-		// Vesting: pallet_vesting::{Module, Call, Storage, Event<T>, Config<T>},
+		Vesting: pallet_vesting::{Module, Call, Storage, Event<T>, Config<T>},
 
 		// governance
 
@@ -1114,10 +1080,10 @@ construct_runtime!(
 
 		// ORML Core
 
-		Auction: orml_auction::{Module, Storage, Call, Event<T>},
-		Rewards: orml_rewards::{Module, Storage, Call},
-		OrmlNFT: orml_nft::{Module, Storage},
-		NFT: nft::{Module, Call, Event<T>},
+		// Auction: orml_auction::{Module, Storage, Call, Event<T>},
+		// Rewards: orml_rewards::{Module, Storage, Call},
+		// OrmlNFT: orml_nft::{Module, Storage},
+		// NFT: nft::{Module, Call, Event<T>},
 
 	}
 );

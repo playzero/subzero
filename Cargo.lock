@@ -978,7 +978,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "crowdfunding-factory"
+name = "crowdfunding"
 version = "0.0.1"
 dependencies = [
  "frame-support",
@@ -2413,7 +2413,6 @@ checksum = "c6f7b1cdf66312002e15682a24430728bd13036c641163c016bc53fb686a7c2d"
 dependencies = [
  "failure",
  "futures 0.1.29",
- "hyper 0.12.35",
  "jsonrpc-core",
  "jsonrpc-pubsub",
  "log",
@@ -3660,23 +3659,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "node-rpc-client"
-version = "2.0.0"
-dependencies = [
- "futures 0.1.29",
- "hyper 0.12.35",
- "jsonrpc-core-client",
- "log",
- "node-primitives",
- "sc-rpc",
- "sp-tracing",
-]
-
-[[package]]
 name = "node-runtime"
 version = "2.0.0"
 dependencies = [
- "crowdfunding-factory",
+ "crowdfunding",
  "frame-benchmarking",
  "frame-executive",
  "frame-support",
@@ -3686,8 +3672,6 @@ dependencies = [
  "hex-literal",
  "integer-sqrt",
  "node-primitives",
- "pallet-assets",
- "pallet-aura",
  "pallet-authority-discovery",
  "pallet-authorship",
  "pallet-babe",
@@ -3728,7 +3712,6 @@ dependencies = [
  "sp-api",
  "sp-authority-discovery",
  "sp-block-builder",
- "sp-consensus-aura",
  "sp-consensus-babe",
  "sp-core",
  "sp-inherents",
@@ -3950,42 +3933,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6ff55baddef9e4ad00f88b6c743a2a8062d4c6ade126c2a528644b8e444d52ce"
 dependencies = [
  "stable_deref_trait",
-]
-
-[[package]]
-name = "pallet-assets"
-version = "2.0.0"
-dependencies = [
- "frame-support",
- "frame-system",
- "parity-scale-codec",
- "serde",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
-]
-
-[[package]]
-name = "pallet-aura"
-version = "2.0.0"
-dependencies = [
- "frame-support",
- "frame-system",
- "lazy_static",
- "pallet-session",
- "pallet-timestamp",
- "parity-scale-codec",
- "parking_lot 0.10.2",
- "serde",
- "sp-application-crypto",
- "sp-consensus-aura",
- "sp-core",
- "sp-inherents",
- "sp-io",
- "sp-runtime",
- "sp-std",
- "sp-timestamp",
 ]
 
 [[package]]

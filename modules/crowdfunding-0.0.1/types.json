@@ -1,0 +1,14 @@
+{
+	"Crowdfunding": {
+		"Campaign": {
+			"id": "Hash",
+			"manager": "AccountId",
+			"deposit": "Balance",
+			"expiry": "BlockNumber",
+			"cap": "Balance",
+			"name": "Vec<u8>",
+			"protocol": "u8",
+			"status": "u8"
+		}
+	}
+}

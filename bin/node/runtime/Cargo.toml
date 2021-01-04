@@ -21,22 +21,22 @@ static_assertions = "1.1.0"
 hex-literal = { version = "0.3.1", optional = true }
 
 # orml
-orml-auction = { path = "../../../vendors/orml/auction", default-features = false }
-orml-authority = { path = "../../../vendors/orml/authority", default-features = false }
-orml-benchmarking = { path = "../../../vendors/orml/benchmarking", default-features = false, optional = true }
-orml-currencies = { path = "../../../vendors/orml/currencies", default-features = false }
-orml-oracle = { path = "../../../vendors/orml/oracle", default-features = false }
-orml-oracle-rpc-runtime-api = { path = "../../../vendors/orml/oracle/rpc/runtime-api", default-features = false }
-orml-gradually-update = { path = "../../../vendors/orml/gradually-update", default-features = false }
-orml-tokens = { path = "../../../vendors/orml/tokens", default-features = false }
-orml-traits = { path = "../../../vendors/orml/traits", default-features = false }
-orml-vesting = { path = "../../../vendors/orml/vesting", default-features = false }
-orml-rewards = { path = "../../../vendors/orml/rewards", default-features = false }
-orml-nft= { path = "../../../vendors/orml/nft", default-features = false }
+# orml-auction = { path = "../../../vendors/orml/auction", default-features = false }
+# orml-authority = { path = "../../../vendors/orml/authority", default-features = false }
+# orml-benchmarking = { path = "../../../vendors/orml/benchmarking", default-features = false, optional = true }
+# orml-currencies = { path = "../../../vendors/orml/currencies", default-features = false }
+# orml-oracle = { path = "../../../vendors/orml/oracle", default-features = false }
+# orml-oracle-rpc-runtime-api = { path = "../../../vendors/orml/oracle/rpc/runtime-api", default-features = false }
+# orml-gradually-update = { path = "../../../vendors/orml/gradually-update", default-features = false }
+# orml-tokens = { path = "../../../vendors/orml/tokens", default-features = false }
+# orml-traits = { path = "../../../vendors/orml/traits", default-features = false }
+# orml-vesting = { path = "../../../vendors/orml/vesting", default-features = false }
+# orml-rewards = { path = "../../../vendors/orml/rewards", default-features = false }
+# orml-nft= { path = "../../../vendors/orml/nft", default-features = false }
 
 # primitives
 sp-consensus-babe = { version = "0.8.0", default-features = false, path = "../../../primitives/consensus/babe" }
-sp-consensus-aura = { version = "0.8.0", default-features = false, path = "../../../primitives/consensus/aura" }
+# sp-consensus-aura = { version = "0.8.0", default-features = false, path = "../../../primitives/consensus/aura" }
 
 sp-authority-discovery = { version = "2.0.0", default-features = false, path = "../../../primitives/authority-discovery" }
 sp-block-builder = { path = "../../../primitives/block-builder", default-features = false, version = "2.0.0"}
@@ -67,7 +67,7 @@ frame-system-rpc-runtime-api = { version = "2.0.0", default-features = false, pa
 pallet-authority-discovery = { version = "2.0.0", default-features = false, path = "../../../frame/authority-discovery" }
 pallet-authorship = { version = "2.0.0", default-features = false, path = "../../../frame/authorship" }
 pallet-babe = { version = "2.0.0", default-features = false, path = "../../../frame/babe" }
-pallet-aura = { version = "2.0.0", default-features = false, path = "../../../frame/aura" }
+# pallet-aura = { version = "2.0.0", default-features = false, path = "../../../frame/aura" }
 pallet-balances = { version = "2.0.0", default-features = false, path = "../../../frame/balances" }
 pallet-collective = { version = "2.0.0", default-features = false, path = "../../../frame/collective" }
 pallet-contracts = { version = "2.0.0", default-features = false, path = "../../../frame/contracts" }
@@ -110,7 +110,7 @@ pallet-vesting = { version = "2.0.0", default-features = false, path = "../../..
 
 # pallet-assets = { version = "2.0.0", default-features = false, path = "../../../frame/assets" }
 crowdfunding = { default-features = false, path = "../../../modules/crowdfunding" }
-nft = { default-features = false, path = "../../../modules/nft" }
+# nft = { default-features = false, path = "../../../modules/nft" }
 # zero-crowdfunding = { version = "0.0.1", default-features = false, path = "../../../modules/crowdfunding" }
 # skillz = { version = "0.0.1", default-features = false, path = "../../../modules/skillz" }
 
@@ -133,8 +133,8 @@ std = [
 	"sp-consensus-babe/std",
 	"pallet-babe/std",
 
-	"sp-consensus-aura/std",
-	"pallet-aura/std",
+	# "sp-consensus-aura/std",
+	# "pallet-aura/std",
 
 	"pallet-balances/std",
 	"sp-block-builder/std",
