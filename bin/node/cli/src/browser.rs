@@ -44,9 +44,9 @@ async fn start_inner(chain_spec: Option<String>, log_level: String) -> Result<Cl
 
 	let config = browser_configuration(chain_spec).await?;
 
-	info!("Substrate browser node");
+	info!("SUBZΞRO browser node");
 	info!("✌️  version {}", config.impl_version);
-	info!("❤️  by Parity Technologies, 2017-2020");
+	info!("❤️  powered by substrate");
 	info!("📋 Chain specification: {}", config.chain_spec.name());
 	info!("🏷 Node name: {}", config.network.node_name);
 	info!("👤 Role: {:?}", config.role);

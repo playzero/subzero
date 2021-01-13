@@ -68,6 +68,11 @@ pub fn flaming_fir_config() -> Result<ChainSpec, String> {
 	ChainSpec::from_json_bytes(&include_bytes!("../res/flaming-fir.json")[..])
 }
 
+/// ZERO alphaville generator
+pub fn zero_alphaville_config() -> Result<ChainSpec, String> {
+	ChainSpec::from_json_bytes(&include_bytes!("../res/zero_alphaville.json")[..])
+}
+
 fn session_keys(
 	grandpa: GrandpaId,
 	babe: BabeId,
