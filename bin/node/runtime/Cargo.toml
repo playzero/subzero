@@ -83,6 +83,23 @@ pallet-transaction-payment = { version = "2.0.0", default-features = false, path
 pallet-transaction-payment-rpc-runtime-api = { version = "2.0.0", default-features = false, path = "../../../frame/transaction-payment/rpc/runtime-api/" }
 pallet-vesting = { version = "2.0.0", default-features = false, path = "../../../frame/vesting" }
 
+# orml
+
+# orml-auction = { path = "../../../vendors/orml/auction", default-features = false }
+# orml-authority = { path = "../../../vendors/orml/authority", default-features = false }
+# orml-benchmarking = { path = "../../../vendors/orml/benchmarking", default-features = false, optional = true }
+# orml-currencies = { path = "../../../vendors/orml/currencies", default-features = false }
+# orml-oracle = { path = "../../../vendors/orml/oracle", default-features = false }
+# orml-oracle-rpc-runtime-api = { path = "../../../vendors/orml/oracle/rpc/runtime-api", default-features = false }
+# orml-gradually-update = { path = "../../../vendors/orml/gradually-update", default-features = false }
+# orml-vesting = { path = "../../../vendors/orml/vesting", default-features = false }
+# orml-rewards = { path = "../../../vendors/orml/rewards", default-features = false }
+# orml-tokens = { path = "../../../vendors/orml/tokens", default-features = false }
+# orml-traits = { path = "../../../vendors/orml/traits", default-features = false }
+orml-nft= { path = "../../../vendors/orml/nft", default-features = false }
+
+module-nft = { path = "../../../modules/nft", default-features = false }
+
 [build-dependencies]
 substrate-wasm-builder = { version = "3.0.0", path = "../../../utils/wasm-builder" }
 
@@ -93,64 +110,84 @@ sp-io = { version = "2.0.0", path = "../../../primitives/io" }
 default = ["std"]
 with-tracing = [ "frame-executive/with-tracing" ]
 std = [
+	"codec/std",
+	"serde",
+
+	"frame-benchmarking/std",
+	"frame-executive/std",
+	"frame-support/std",
+	"frame-system/std",
+	"frame-system-rpc-runtime-api/std",
+
 	"sp-authority-discovery/std",
+	"sp-block-builder/std",
+	"sp-consensus-babe/std",
+	"sp-inherents/std",
+	"sp-offchain/std",
+	"sp-core/std",
+	"sp-std/std",
+	"sp-api/std",
+	"sp-runtime/std",
+	"sp-staking/std",
+	"sp-keyring",
+	"sp-session/std",
+	"sp-transaction-pool/std",
+	"sp-version/std",
+
 	"pallet-assets/std",
 	"pallet-authority-discovery/std",
 	"pallet-authorship/std",
-	"sp-consensus-babe/std",
 	"pallet-babe/std",
 	"pallet-balances/std",
 	"pallet-bounties/std",
-	"sp-block-builder/std",
-	"codec/std",
 	"pallet-collective/std",
 	"pallet-contracts/std",
 	"pallet-contracts-primitives/std",
 	"pallet-contracts-rpc-runtime-api/std",
 	"pallet-democracy/std",
 	"pallet-elections-phragmen/std",
-	"frame-executive/std",
 	"pallet-grandpa/std",
 	"pallet-im-online/std",
 	"pallet-indices/std",
-	"sp-inherents/std",
 	"pallet-lottery/std",
 	"pallet-membership/std",
 	"pallet-mmr/std",
 	"pallet-multisig/std",
 	"pallet-identity/std",
 	"pallet-scheduler/std",
-	"node-primitives/std",
-	"sp-offchain/std",
 	"pallet-offences/std",
 	"pallet-proxy/std",
-	"sp-core/std",
 	"pallet-randomness-collective-flip/std",
-	"sp-std/std",
-	"serde",
 	"pallet-session/std",
-	"sp-api/std",
-	"sp-runtime/std",
-	"sp-staking/std",
 	"pallet-staking/std",
-	"sp-keyring",
-	"sp-session/std",
 	"pallet-sudo/std",
-	"frame-support/std",
-	"frame-benchmarking/std",
-	"frame-system-rpc-runtime-api/std",
-	"frame-system/std",
 	"pallet-timestamp/std",
 	"pallet-tips/std",
 	"pallet-transaction-payment-rpc-runtime-api/std",
 	"pallet-transaction-payment/std",
 	"pallet-treasury/std",
-	"sp-transaction-pool/std",
 	"pallet-utility/std",
-	"sp-version/std",
 	"pallet-society/std",
 	"pallet-recovery/std",
 	"pallet-vesting/std",
+
+	"node-primitives/std",
+
+	# "orml-auction/std",
+	# "orml-authority/std",
+	# "orml-benchmarking/std",
+	# "orml-currencies/std",
+	# "orml-oracle-rpc-runtime-api/std",
+	# "orml-oracle/std",
+	# "orml-gradually-update/std",
+	# "orml-tokens/std",
+	# "orml-traits/std",
+	# "orml-vesting/std",
+	# "orml-rewards/std",
+	"orml-nft/std",
+
+	"module-nft/std",
+
 ]
 runtime-benchmarks = [
 	"frame-benchmarking",
