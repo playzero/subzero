@@ -877,7 +877,7 @@ parameter_types! {
 	pub const MaxRegistrars: u32 = 20;
 }
 
-impl pallet_identity::Config for Runtime {
+impl module_identity::Config for Runtime {
 	type Event = Event;
 	type Currency = Balances;
 	type BasicDeposit = BasicDeposit;
@@ -889,7 +889,7 @@ impl pallet_identity::Config for Runtime {
 	type Slashed = Treasury;
 	type ForceOrigin = EnsureRootOrHalfCouncil;
 	type RegistrarOrigin = EnsureRootOrHalfCouncil;
-	type WeightInfo = pallet_identity::weights::SubstrateWeight<Runtime>;
+	type WeightInfo = module_identity::weights::SubstrateWeight<Runtime>;
 }
 
 parameter_types! {
@@ -1023,7 +1023,7 @@ construct_runtime!(
 		Offences: pallet_offences::{Module, Call, Storage, Event},
 		Historical: pallet_session_historical::{Module},
 		RandomnessCollectiveFlip: pallet_randomness_collective_flip::{Module, Call, Storage},
-		Identity: pallet_identity::{Module, Call, Storage, Event<T>},
+		Identity: module_identity::{Module, Call, Storage, Event<T>},
 		Society: pallet_society::{Module, Call, Storage, Event<T>, Config<T>},
 		Recovery: pallet_recovery::{Module, Call, Storage, Event<T>},
 		Vesting: pallet_vesting::{Module, Call, Storage, Event<T>, Config<T>},
@@ -1318,7 +1318,7 @@ impl_runtime_apis! {
 			add_benchmark!(params, batches, pallet_democracy, Democracy);
 			add_benchmark!(params, batches, pallet_elections_phragmen, Elections);
 			add_benchmark!(params, batches, pallet_grandpa, Grandpa);
-			add_benchmark!(params, batches, pallet_identity, Identity);
+			add_benchmark!(params, batches, module_identity, Identity);
 			add_benchmark!(params, batches, pallet_im_online, ImOnline);
 			add_benchmark!(params, batches, pallet_indices, Indices);
 			add_benchmark!(params, batches, pallet_lottery, Lottery);
