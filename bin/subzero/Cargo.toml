@@ -1,0 +1,26 @@
+[package]
+name = "subzero"
+version = "0.7.0"
+authors = ["zero.io"]
+edition = "2018"
+
+[[bin]]
+name = "subzero"
+path = "src/main.rs"
+
+[dependencies]
+futures = "0.3.4"
+parity-util-mem = { version = "0.7.0", default-features = false, features = ["jemalloc-global"] }
+subzero-cli = { path = "cli" }
+alphaville-runtime = { path = "../../runtime/alphaville", optional = true }
+# alphaville-service = { path = "service" }
+
+[features]
+default = [ "with-alphaville-runtime" ]
+with-alphaville-runtime = [
+	# "subzero-service/with-alphaville-runtime",
+	"subzero-cli/with-alphaville-runtime",
+]
+
+[build-dependencies]
+substrate-build-script-utils = { version = "2.0.1", default-features = false }
