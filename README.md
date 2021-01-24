@@ -1,31 +1,85 @@
-# Substrate &middot; [![GitHub license](https://img.shields.io/badge/license-GPL3%2FApache2-blue)](#LICENSE) [![GitLab Status](https://gitlab.parity.io/parity/substrate/badges/master/pipeline.svg)](https://gitlab.parity.io/parity/substrate/pipelines) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](docs/CONTRIBUTING.adoc)
-
 <p align="center">
-  <img src="/docs/media/sub.gif">
+  <img src="https://zero.io/img/favicon.png" width="128">
 </p>
 
+<div align="center">
+	[![GitLab Status](https://gitlab.io/zero.io/subzero/badges/master/pipeline.svg)](https://gitlab.io/zero.io/subzero/pipelines)
+	[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/playzero/subzero)](https://github.com/playzero/subzero/tags)
+	[![Substrate version](https://img.shields.io/badge/Substrate-2.0.0-brightgreen?logo=Parity%20Substrate)](https://substrate.dev/)
+	[![License](https://img.shields.io/github/license/playzero/subzero?color=green)](https://github.com/playzero/subzero/blob/master/LICENSE)
+	 <br />
+	[![Discord](https://img.shields.io/badge/Discord-gray?logo=discord)](https://discord.gg/rhwtr7p)
+	[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fzerodotio)](https://twitter.com/zerodotio)
+	[![Medium](https://img.shields.io/badge/Medium-gray?logo=medium)](https://medium.com/playzero)
+</div>
 
-Substrate is a next-generation framework for blockchain innovation 🚀.
+# 1. ZERO.IO — the videogame network for the metaverse
 
-## Trying it out
+<!-- TOC -->
 
-Simply go to [substrate.dev](https://substrate.dev) and follow the 
-[installation](https://substrate.dev/docs/en/knowledgebase/getting-started/) instructions. You can 
-also try out one of the [tutorials](https://substrate.dev/en/tutorials).
+- [1. Introduction](#1-introduction)
+- [2. Economics](#2-economics)
+- [3. Build](#3-build)
+- [4. Run](#4-run)
 
-## Contributions & Code of Conduct
+<!-- /TOC -->
 
-Please follow the contributions guidelines as outlined in [`docs/CONTRIBUTING.adoc`](docs/CONTRIBUTING.adoc). In all communications and contributions, this project follows the [Contributor Covenant Code of Conduct](docs/CODE_OF_CONDUCT.md).
+# 1. Introduction
+ZERO is a Relaychain, Parachain, Multiverse + DAO for next gen videogames. It provides native asset-, finance-, governance protocols, Smart Contracts, a Metaverse Hypergraph, Decentralized Computation at its core. To provide cross economic interoperability between totally different ecosystems. Futhermore it will enable generative creation of games and game economies through algorithms, generators and provision of autonomous agents to drive transition of old economy videogames and creators into a tokenized and decentralized future.
 
-## Security
+- Native currency: $PLAY (EUR backed)
+- on/off ramp currencies:  $KSM, $DOT, FIAT, others t.b.d.
+- join our community: http://discord.gg/rhwtr7p
 
-The security policy and procedures can be found in [`docs/SECURITY.md`](docs/SECURITY.md).
+# 2. Economics
 
-## License
+ZERO Token ($PLAY) features the following utilities, and the value of $PLAY token will accrue with the increased usage of the network and revenue from stability fees and liquidation penalties
 
-- Substrate Primitives (`sp-*`), Frame (`frame-*`) and the pallets (`pallets-*`), binaries (`/bin`) and all other utilities are licensed under [Apache 2.0](LICENSE-APACHE2).
-- Substrate Client (`/client/*` / `sc-*`) is licensed under [GPL v3.0 with a classpath linking exception](LICENSE-GPL3).
+	- Network utility and stability fees
+		-- Asset, Finance and Governance protocols
+		-- Payment, Identity
+		-- Computation, Oracles
+	- Governance: vote for/against risk parameters and network change proposals
+	- Economic Capital: in case of liquidation/defaulting of contracts without sufficient collaterals
 
-The reason for the split-licensing is to ensure that for the vast majority of teams using Substrate to create feature-chains, then all changes can be made entirely in Apache2-licensed code, allowing teams full freedom over what and how they release and giving licensing clarity to commercial teams.
+To enable cross-chain functionality, ZERO.IO will connect to the Polkadot Ecosystem ( starting with Kusama ) in one of three ways:
 
-In the interests of the community, we require any deeper improvements made to Substrate's core logic (e.g. Substrate's internal consensus, crypto or database code) to be contributed back so everyone can benefit.
+	- parathread —— pay-as-you-go connection to Polkadot
+	- parachain —— permanent connection for a given period
+	- bridge —— independent chain bridged to Polkadot
+
+Becoming a parachain would be an ideal option to bootstrap ZERO Network, to maximize its benefits and to reach to other chains and applications on the Polkadot network.
+
+To secure a parachain slot, ZERO Network will require supportive DOT/KSM holders to lock their DOT/KSM to bid for a slot collectively — a process known as the Initial Parachain Offering (IPO). $PLAY tokens will be offered as a reward for those who participated in the IPO, as compensation for their opportunity cost of staking DOT/KSM.
+
+3. Building
+Rust.
+```bash
+	curl https://sh.rustup.rs -sSf | sh
+```
+Recursion for submodules in git
+```bash
+	git config --global submodule.recurse true
+```
+Build for your current machine architecture
+```bash
+	make build
+```
+
+4. Running
+Run your local dev chain
+```bash
+	make run
+```
+Purge the cache
+```bash
+	make purge
+```
+Update ORML
+```bash
+	make update
+```
+
+# 0. Notes
+ This is still work in progress, we will update more information as we progress. Refer to the token economy working paper for more details. This project and text was inspired by the excellent work of many growing projects in the Polkadot ecosystem. Thank you!.
+
