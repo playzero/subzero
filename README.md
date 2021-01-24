@@ -3,14 +3,13 @@
 </p>
 
 <div align="center">
-	[![GitLab Status](https://gitlab.io/zero.io/subzero/badges/master/pipeline.svg)](https://gitlab.io/zero.io/subzero/pipelines)
-	[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/playzero/subzero)](https://github.com/playzero/subzero/tags)
-	[![Substrate version](https://img.shields.io/badge/Substrate-2.0.0-brightgreen?logo=Parity%20Substrate)](https://substrate.dev/)
-	[![License](https://img.shields.io/github/license/playzero/subzero?color=green)](https://github.com/playzero/subzero/blob/master/LICENSE)
-	 <br />
-	[![Discord](https://img.shields.io/badge/Discord-gray?logo=discord)](https://discord.gg/rhwtr7p)
-	[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fzerodotio)](https://twitter.com/zerodotio)
-	[![Medium](https://img.shields.io/badge/Medium-gray?logo=medium)](https://medium.com/playzero)
+[![GitLab Status](https://gitlab.com/zero.io/subzero/badges/master/pipeline.svg)](https://gitlab.com/zero.io/subzero/pipelines)
+[![Substrate version](https://img.shields.io/badge/Substrate-2.0.0-brightgreen?logo=Parity%20Substrate)](https://substrate.dev/)
+[![License](https://img.shields.io/github/license/playzero/subzero?color=green)](https://github.com/playzero/subzero/blob/master/LICENSE)
+ <br />
+[![Discord](https://img.shields.io/badge/Discord-gray?logo=discord)](https://discord.gg/rhwtr7p)
+[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fzerodotio)](https://twitter.com/zerodotio)
+[![Medium](https://img.shields.io/badge/Medium-gray?logo=medium)](https://medium.com/playzero)
 </div>
 
 # 1. ZERO.IO — the videogame network for the metaverse
