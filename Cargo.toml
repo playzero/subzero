@@ -3,7 +3,6 @@ members = [
 	"bin/node/cli",
 	"bin/utils/chain-spec-builder",
 	"bin/utils/subkey",
-
 	"vendors/orml/nft",
 	"vendors/orml/traits",
 	"vendors/orml/currencies",
