@@ -88,6 +88,16 @@ use sp_runtime::generic::Era;
 /// Weights for pallets used in the runtime.
 mod weights;
 
+//
+//
+//
+
+use crowdfunding;
+
+//
+//
+//
+
 // Make the WASM binary available.
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
@@ -111,7 +121,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("subzero"),
 	spec_version: 7,
 	impl_name: create_runtime_str!("alphaville"),
-	impl_version: 1,
+	impl_version: 2,
 	//
 	apis: RUNTIME_API_VERSIONS,
 	//
@@ -892,6 +902,41 @@ impl pallet_vesting::Trait for Runtime {
 	type WeightInfo = weights::pallet_vesting::WeightInfo;
 }
 
+//
+//
+//
+
+parameter_types! {
+	pub const SubmissionDeposit: u128 = 10;
+	pub const MinContribution: u128 = 10;
+	pub const RetirementPeriod: u32 = 10;
+	pub const Nonce: u64 = 1337;
+	pub const MinLength: usize = 4;
+	pub const MaxLength: usize = 64;
+}
+
+impl crowdfunding::Trait for Runtime {
+	type Event = Event;
+	type Nonce = Nonce;
+	type Currency = Balances;
+	// creator deposit
+	// type SubmissionDeposit = SubmissionDeposit;
+	// minimum contribution
+	// type MinContribution = MinContribution;
+	// unclaimed funds
+	// type RetirementPeriod = RetirementPeriod;
+	// campaign title
+	// TODO: replace with ipfs hash containing all info
+	type MinLength = MinLength;
+	type MaxLength = MaxLength;
+	// randomness provider
+	type Randomness = RandomnessCollectiveFlip;
+}
+
+//
+//
+//
+
 construct_runtime!(
 	pub enum Runtime where
 		Block = Block,
@@ -900,10 +945,10 @@ construct_runtime!(
 	{
 		System: frame_system::{Module, Call, Config, Storage, Event<T>},
 		Utility: pallet_utility::{Module, Call, Event},
-		Babe: pallet_babe::{Module, Call, Storage, Config, Inherent, ValidateUnsigned},
 		Timestamp: pallet_timestamp::{Module, Call, Storage, Inherent},
-		Authorship: pallet_authorship::{Module, Call, Storage, Inherent},
 		Indices: pallet_indices::{Module, Call, Storage, Config<T>, Event<T>},
+		Authorship: pallet_authorship::{Module, Call, Storage, Inherent},
+		Babe: pallet_babe::{Module, Call, Storage, Config, Inherent, ValidateUnsigned},
 		Balances: pallet_balances::{Module, Call, Storage, Config<T>, Event<T>},
 		TransactionPayment: pallet_transaction_payment::{Module, Storage},
 		Staking: pallet_staking::{Module, Call, Config<T>, Storage, Event<T>, ValidateUnsigned},
@@ -916,20 +961,24 @@ construct_runtime!(
 		FinalityTracker: pallet_finality_tracker::{Module, Call, Inherent},
 		Grandpa: pallet_grandpa::{Module, Call, Storage, Config, Event, ValidateUnsigned},
 		Treasury: pallet_treasury::{Module, Call, Storage, Config, Event<T>},
-		Contracts: pallet_contracts::{Module, Call, Config, Storage, Event<T>},
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 		ImOnline: pallet_im_online::{Module, Call, Storage, Event<T>, ValidateUnsigned, Config<T>},
 		AuthorityDiscovery: pallet_authority_discovery::{Module, Call, Config},
 		Offences: pallet_offences::{Module, Call, Storage, Event},
 		Historical: pallet_session_historical::{Module},
-		RandomnessCollectiveFlip: pallet_randomness_collective_flip::{Module, Call, Storage},
-		Identity: pallet_identity::{Module, Call, Storage, Event<T>},
 		Society: pallet_society::{Module, Call, Storage, Event<T>, Config<T>},
 		Recovery: pallet_recovery::{Module, Call, Storage, Event<T>},
 		Vesting: pallet_vesting::{Module, Call, Storage, Event<T>, Config<T>},
 		Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
 		Proxy: pallet_proxy::{Module, Call, Storage, Event<T>},
 		Multisig: pallet_multisig::{Module, Call, Storage, Event<T>},
+		RandomnessCollectiveFlip: pallet_randomness_collective_flip::{Module, Call, Storage},
+
+		Identity: pallet_identity::{Module, Call, Storage, Event<T>},
+		Contracts: pallet_contracts::{Module, Call, Config, Storage, Event<T>},
+
+		Crowdfunding: crowdfunding::{Module, Call, Storage, Event<T>},
+
 	}
 );
 
