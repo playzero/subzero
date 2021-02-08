@@ -3401,6 +3401,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "module-ipfs"
+version = "2.0.0"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
 name = "more-asserts"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3595,6 +3608,7 @@ dependencies = [
  "hex-literal",
  "integer-sqrt",
  "module-crowdfunding",
+ "module-ipfs",
  "node-primitives",
  "pallet-authority-discovery",
  "pallet-authorship",

@@ -84,6 +84,7 @@ pallet-vesting = { version = "2.0.0", default-features = false, path = "../../..
 #
 
 module-crowdfunding = { default-features = false, path = "../../../modules/crowdfunding" }
+module-ipfs = { default-features = false, path = "../../../modules/ipfs" }
 
 #
 

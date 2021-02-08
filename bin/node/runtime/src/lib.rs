@@ -105,6 +105,7 @@ pub fn wasm_binary_unwrap() -> &'static [u8] {
 //
 
 use module_crowdfunding;
+use module_ipfs;
 
 //
 //
@@ -953,6 +954,11 @@ impl module_crowdfunding::Trait for Runtime {
 	// type MaxDuration = MaxDuration;
 }
 
+/// Configure the pallet template in pallets/template.
+impl module_ipfs::Trait for Runtime {
+	type Event = Event;
+}
+
 //
 //
 //
@@ -1001,6 +1007,7 @@ construct_runtime!(
 		//
 
 		GameDAOCrowdfunding: module_crowdfunding::{Module, Call, Storage, Event<T>},
+		Ipfs: module_ipfs::{Module, Call, Storage, Event<T>},
 
 
 	}
