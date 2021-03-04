@@ -32,10 +32,9 @@ default:
 
 docker:
   stage: docker
-  image: paritytech/ci-linux:production
+  # image: paritytech/ci-linux:production
   allow_failure: true
   script:
-    - echo "build subzero x86"
     - docker build -t playzero/subzero:latest .
 
 #
