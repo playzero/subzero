@@ -33,6 +33,7 @@ default:
 docker:
   stage: docker
   # image: paritytech/ci-linux:production
+  image: docker:dind
   allow_failure: true
   script:
     - docker build -t playzero/subzero:latest .
