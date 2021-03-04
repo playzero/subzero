@@ -1,7 +1,5 @@
 stages:
-  - docker
-  - publish
-  - deploy
+  - build
 
 default:
   cache:                           {}
@@ -14,30 +12,14 @@ default:
     paths:
       - artifacts/
 
-.docker-env:                       &docker-env
-  image:                           paritytech/ci-linux:production
-  before_script:
-    - rustup show
-    - cargo --version
-    - sccache -s
-  retry:
-    max: 2
-    when:
-      - runner_system_failure
-      - unknown_failure
-      - api_failure
-  interruptible:                   true
-  tags:
-    - linux-docker
-
 docker:
-  stage: docker
-  # image: paritytech/ci-linux:production
-  image: docker:dind
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   allow_failure: true
   script:
     - docker build -t playzero/subzero:latest .
-
-#
-#
-#
+    - docker push "$CI_REGISTRY_IMAGE"
