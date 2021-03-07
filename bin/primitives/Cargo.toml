@@ -5,20 +5,20 @@ authors = ["zero collective <play@zero.io>"]
 edition = "2018"
 
 [dependencies]
-serde = { version = "1.0.103", optional = true }
+serde = { version = "1.0.102", optional = true }
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
 
-sp-application-crypto = { version = "3.0.0", default-features = false, path = "../../primitives/application-crypto" }
-sp-core = { version = "3.0.0", default-features = false, path = "../../primitives/core" }
-sp-runtime = { version = "3.0.0", default-features = false, path = "../../primitives/runtime"}
-sp-std = { version = "3.0.0", default-features = false, path = "../../primitives/std"}
-sp-io = { version = "3.0.0", default-features = false, path = "../../primitives/io"}
+sp-application-crypto = { version = "3.0.0", default-features = false }
+sp-core = { version = "3.0.0", default-features = false }
+sp-runtime = { version = "3.0.0", default-features = false }
+sp-std = { version = "3.0.0", default-features = false }
+sp-io = { version = "3.0.0", default-features = false }
 
-frame-system = { version = "3.0.0", default-features = false, path = "../../frame/system" }
+frame-system = { version = "3.0.0", default-features = false }
 
 [dev-dependencies]
-frame-support = { version = "3.0.0", path = "../../frame/support"}
-frame-system = { version = "3.0.0", path = "../../frame/system"}
+frame-support = { version = "3.0.0" }
+frame-system = { version = "3.0.0" }
 
 [features]
 default = ["std"]

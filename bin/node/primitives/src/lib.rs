@@ -22,10 +22,8 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use sp_runtime::{
-	generic, traits::{Verify, BlakeTwo256, IdentifyAccount}, OpaqueExtrinsic, MultiSignature, RuntimeDebug
+	generic, traits::{Verify, BlakeTwo256, IdentifyAccount}, OpaqueExtrinsic, MultiSignature
 };
-use serde::{ Serialize, Deserialize };
-use codec::{ Encode, Decode };
 
 /// An index to a block.
 pub type BlockNumber = u32;

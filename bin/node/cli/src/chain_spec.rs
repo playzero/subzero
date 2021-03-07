@@ -64,8 +64,8 @@ pub type ChainSpec = sc_service::GenericChainSpec<
 	Extensions,
 >;
 /// Flaming Fir testnet generator
-pub fn alphaville_config() -> Result<ChainSpec, String> {
-	ChainSpec::from_json_bytes(&include_bytes!("../res/alphaville.json")[..])
+pub fn flaming_fir_config() -> Result<ChainSpec, String> {
+	ChainSpec::from_json_bytes(&include_bytes!("../res/flaming-fir.json")[..])
 }
 
 fn session_keys(
@@ -326,6 +326,7 @@ pub fn testnet_genesis(
 			max_members: 999,
 		}),
 		pallet_vesting: Some(Default::default()),
+		pallet_gilt: Some(Default::default()),
 	}
 }
 

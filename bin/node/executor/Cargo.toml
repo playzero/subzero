@@ -15,33 +15,34 @@ targets = ["x86_64-unknown-linux-gnu"]
 codec = { package = "parity-scale-codec", version = "2.0.0" }
 node-primitives = { version = "2.0.0", path = "../primitives" }
 node-runtime = { version = "2.0.0", path = "../runtime" }
-sc-executor = { version = "0.9.0", path = "../../../client/executor" }
-sp-core = { version = "3.0.0", path = "../../../primitives/core" }
-sp-keystore = { version = "0.9.0", path = "../../../primitives/keystore" }
-sp-io = { version = "3.0.0", path = "../../../primitives/io" }
-sp-state-machine = { version = "0.9.0", path = "../../../primitives/state-machine" }
-sp-trie = { version = "3.0.0", path = "../../../primitives/trie" }
+sc-executor = { version = "0.9.0" }
+sp-core = { version = "3.0.0" }
+sp-keystore = { version = "0.9.0" }
+sp-io = { version = "3.0.0" }
+sp-state-machine = { version = "0.9.0" }
+sp-trie = { version = "3.0.0" }
 trie-root = "0.16.0"
-frame-benchmarking = { version = "3.0.0", path = "../../../frame/benchmarking" }
+frame-benchmarking = { version = "3.1.0" }
 
 [dev-dependencies]
 criterion = "0.3.0"
-frame-support = { version = "3.0.0", path = "../../../frame/support" }
-frame-system = { version = "3.0.0", path = "../../../frame/system" }
+frame-support = { version = "3.0.0" }
+frame-system = { version = "3.0.0" }
 node-testing = { version = "2.0.0", path = "../testing" }
-pallet-balances = { version = "3.0.0", path = "../../../frame/balances" }
-pallet-contracts = { version = "2.0.0", path = "../../../frame/contracts" }
-pallet-grandpa = { version = "3.0.0", path = "../../../frame/grandpa" }
-pallet-im-online = { version = "3.0.0", path = "../../../frame/im-online" }
-pallet-indices = { version = "3.0.0", path = "../../../frame/indices" }
-pallet-session = { version = "3.0.0", path = "../../../frame/session" }
-pallet-timestamp = { version = "3.0.0", path = "../../../frame/timestamp" }
-pallet-transaction-payment = { version = "3.0.0", path = "../../../frame/transaction-payment" }
-pallet-treasury = { version = "3.0.0", path = "../../../frame/treasury" }
-sp-application-crypto = { version = "3.0.0", path = "../../../primitives/application-crypto" }
-sp-runtime = { version = "3.0.0", path = "../../../primitives/runtime" }
-sp-externalities = { version = "0.9.0", path = "../../../primitives/externalities" }
-substrate-test-client = { version = "2.0.0", path = "../../../test-utils/client" }
+pallet-balances = { version = "3.0.0" }
+pallet-contracts = { version = "3.0.0" }
+pallet-grandpa = { version = "3.0.0" }
+pallet-im-online = { version = "3.0.0" }
+pallet-indices = { version = "3.0.0" }
+pallet-session = { version = "3.0.0" }
+pallet-timestamp = { version = "3.0.0" }
+pallet-transaction-payment = { version = "3.0.0" }
+pallet-treasury = { version = "3.0.0" }
+sp-application-crypto = { version = "3.0.0" }
+sp-consensus-babe = { version = "0.9.0" }
+sp-runtime = { version = "3.0.0" }
+sp-externalities = { version = "0.9.0" }
+substrate-test-client = { version = "2.0.0" }
 wat = "1.0"
 
 [features]
