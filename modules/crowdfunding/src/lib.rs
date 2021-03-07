@@ -57,7 +57,7 @@
 #![allow(unused_imports)]
 #![allow(unused_variables)]
 // only on nightly
-#![feature(const_fn_fn_ptr_basics)]
+// #![feature(const_fn_fn_ptr_basics)]
 
 use frame_support::{
 	decl_error, decl_event, decl_module, decl_storage,
@@ -90,12 +90,18 @@ use primitives::{ Balance };
 // TODO: tests
 // #[cfg(test)]
 // mod campaign_tests;
+
 // TODO: pallet benchmarking
 // mod benchmarking;
+
 // TODO: weights
 // mod default_weights;
+
 // TODO: externalise error messages
 // mod errors;
+
+// #[cfg(feature = "with-campaign-governance")]
+// mod treasury;
 
 // module header
 const PALLET_ID: ModuleId = ModuleId(*b"GAMEcrwd");
@@ -111,6 +117,9 @@ const MAX_CONTRIBUTIONS_PER_ADDRESS: usize = 3;
 const MAX_CAMPAIGN_LENGTH: u32 = 777600;
 
 pub trait Config: system::Config + balances::Config + timestamp::Config {
+
+	/// The module id
+	type ModuleId: Get<ModuleId>;
 
 	// type AdminOrigin: Get<Self::AccountId>;
 
@@ -167,7 +176,7 @@ pub struct Campaign<Hash, AccountId, Balance, BlockNumber, Timestamp> {
 	/// dao governed after success
 	/// true: payout through governance
 	/// false: 100% payout upon completion
-	governance: bool,
+	governance: u8,
 
 	// /// storage
 	// ipfs_hash: Vec<u8>,
@@ -327,7 +336,7 @@ decl_module! {
 			// not target blocknumber
 			expiry: T::BlockNumber,
 			protocol: u8,
-			governance: bool
+			governance: u8
 		) {
 
 			// get the creator
@@ -492,6 +501,18 @@ decl_module! {
 			Ok(())
 		}
 
+
+		// depending on the protocol, a successful campaign can resolve into the following:
+		//
+		// 1. campaign not successful: funds are unreserved in the contributor accounts.
+		//
+		// 2. campaign successful:
+		//
+		//    a. funds are collected and sent to creator ( Grant without DAO )
+		//
+		//    b. funds are collected and moved to a treasury account, where they are reserved again.
+		//       - in governance creator can create motions to withdraw funds.
+
 		/// finalize campaigns ending in current block
 		fn on_finalize() {
 
@@ -514,10 +535,10 @@ decl_module! {
 					<Campaigns<T>>::insert(campaign_id.clone(), campaign);
 
 					// get campaign owner
-					let _owner = Self::owner_of(campaign_id);
+					let _campaign_owner = Self::owner_of(campaign_id);
 
-					match _owner {
-						Some(owner) => {
+					match _campaign_owner {
+						Some(campaign_owner) => {
 
 							// get all contributors
 							let contributors = Self::contributor_accounts(campaign_id);
@@ -528,16 +549,17 @@ decl_module! {
 							// 3 transfer contribution to campaign owner -> should be treasury!
 							'inner: for contributor in &contributors {
 
-
+								// get contributed balance
 								let contributor_balance = Self::contributed_amount((*campaign_id, contributor.clone()));
+								// unreserve balance
 								let _ = <balances::Module<T>>::unreserve(&contributor, contributor_balance.clone());
-
 								// if contributor == campaign owner
-								// unreserve the money
-								if contributor == &owner { continue; }
+								if contributor == &campaign_owner { continue; }
+
+								// transfer balance from contributor to owner..
 								let _transfer = <balances::Module<T> as Currency<_>>::transfer(
 									&contributor,
-									&owner,
+									&campaign_owner,
 									contributor_balance,
 									ExistenceRequirement::AllowDeath
 								);
@@ -555,7 +577,7 @@ decl_module! {
 							// If all transactions are settled
 							// reserve all money of the funding
 							if transaction_complete {
-								let _ = <balances::Module<T>>::reserve(&owner, total_contributions);
+								let _ = <balances::Module<T>>::reserve(&campaign_owner, total_contributions);
 								// deposit the event
 								Self::deposit_event(RawEvent::CampaignFinalized(*campaign_id, total_contributions, block_number, true));
 							}

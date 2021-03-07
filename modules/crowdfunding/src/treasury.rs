@@ -102,41 +102,41 @@ decl_storage! {
 	trait Store for Module<T: Trait> as ProposalProposal {
 
 		// Global status
-		Proposals get(proposals): map hasher(blake2_128_concat) T::Hash => Proposal<T::Hash, T::Balance, T::BlockNumber>;
-		ProposalOwner get(owner_of_proposal): map hasher(blake2_128_concat) T::Hash => Option<T::AccountId>;
+		Proposals get(fn proposals): map hasher(blake2_128_concat) T::Hash => Proposal<T::Hash, T::Balance, T::BlockNumber>;
+		ProposalOwner get(fn owner_of_proposal): map hasher(blake2_128_concat) T::Hash => Option<T::AccountId>;
 
 		// Maximum time limit for the proposal
-		ProposalPeriodLimit get(proposal_period_limit) config(): T::BlockNumber = T::BlockNumber::sa(60480);
+		ProposalPeriodLimit get(fn proposal_period_limit) config(): T::BlockNumber = T::BlockNumber::sa(60480);
 
 		// All proposals
-		AllProposalArray get(proposal_by_index): map hasher(blake2_128_concat) u64 => T::Hash;
-		AllProposalCount get(all_proposal_count): u64;
+		AllProposalArray get(fn proposal_by_index): map hasher(blake2_128_concat) u64 => T::Hash;
+		AllProposalCount get(fn all_proposal_count): u64;
 		AllProposalIndex: map hasher(blake2_128_concat) T::Hash => u64;
 
 		// The funding's proposals
-		ProposalOfFundingArray get(proposal_of_funding_by_index): map hasher(blake2_128_concat)  (T::Hash, u64) => T::Hash;
-		ProposalOfFundingCount get(proposal_of_funding_count): map hasher(blake2_128_concat) T::Hash => u64;
+		ProposalOfFundingArray get(fn proposal_of_funding_by_index): map hasher(blake2_128_concat)  (T::Hash, u64) => T::Hash;
+		ProposalOfFundingCount get(fn proposal_of_funding_count): map hasher(blake2_128_concat) T::Hash => u64;
 		ProposalOfFundingIndex: map hasher(blake2_128_concat) (T::Hash, T::Hash) => u64;
 
 		// The owner's proposals
-		ProposalOfOwnerArray get(proposal_of_owner): map hasher(blake2_128_concat) (T::AccountId, u64) => T::Hash;
-		ProposalOfOwnerCount get(proposal_of_owner_count): map hasher(blake2_128_concat) T::AccountId => u64;
+		ProposalOfOwnerArray get(fn proposal_of_owner): map hasher(blake2_128_concat) (T::AccountId, u64) => T::Hash;
+		ProposalOfOwnerCount get(fn proposal_of_owner_count): map hasher(blake2_128_concat) T::AccountId => u64;
 		ProposalOfOwnerIndex: map hasher(blake2_128_concat) (T::AccountId, T::Hash) => u64;
 
 		// Proposals ending in a block
-		ProposalsByBlockNumber get(proposal_expire_at): map hasher(blake2_128_concat) T::BlockNumber => Vec<T::Hash>;
+		ProposalsByBlockNumber get(fn proposal_expire_at): map hasher(blake2_128_concat) T::BlockNumber => Vec<T::Hash>;
 
 		// The amount of money that the project has used
-		UsedMoneyOfFunding get(used_money_of_funding): map hasher(blake2_128_concat) T::Hash => T::Balance;
+		UsedMoneyOfCampaign get(fn used_money_of_campaign): map hasher(blake2_128_concat) T::Hash => T::Balance;
 
 		// The number of people who support the proposal
-		SupportedOfProposal get(supported_of_proposal): map hasher(blake2_128_concat) T::Hash => u64;
+		SupporterOfProposal get(fn supporter_of_proposal): map hasher(blake2_128_concat) T::Hash => u64;
 
-		// Judge if the user has voted the proposal
-		VotedBefore get(voted_before): map hasher(blake2_128_concat) (T::AccountId, T::Hash) => bool;
+		// Judge if the user has voted the proposal already
+		VotedBefore get(fn voted_before): map hasher(blake2_128_concat) (T::AccountId, T::Hash) => bool;
 
-		// Get the status of a proposal: 0 undecided 1 accepted 2 declined
-       	ProposalStatus get(status_of_proposal): map hasher(blake2_128_concat) T::Hash => u8;
+		// Get the status of a proposal: 0 undecided 1 accepted 2 declined 3 expired
+       	ProposalStatus get(fn status_of_proposal): map hasher(blake2_128_concat) T::Hash => u8;
 
 		// Record the number of proposals
 		Nonce: u64;
@@ -169,7 +169,7 @@ decl_module! {
 			ensure!(expiry > <system::Module<T>>::block_number(), "The expiry has to be greater than the current block number");
 			ensure!(expiry <= <system::Module<T>>::block_number() + Self::proposal_period_limit(), "The expiry has be lower than the limit block number");
 
-			let used_balance = Self::used_money_of_funding(&campaign_id);
+			let used_balance = Self::used_money_of_campaign(&campaign_id);
 			let total_balance = <funding_factory::Module<T>>::get_funding_total_balance(campaign_id);
 			let remain_balance = total_balance - used_balance;
 			ensure!(remain_balance >= amount, "The remain money is not enough");
@@ -252,7 +252,7 @@ decl_module! {
 			// Ensure the proposal is not expire
 			ensure!(<system::Module<T>>::block_number() < proposal.expiry, "This proposal is expired.");
 			// Get the number of people who have supported the proposal and add 1
-			let supported_proposal_count = Self::supported_of_proposal(&proposal_id);
+			let supported_proposal_count = Self::supporter_of_proposal(&proposal_id);
 			let new_supported_proposal_count = supported_proposal_count.checked_add(1).ok_or("Overflow adding the number of people who have voted the proposal")?;
 			// Check if the number is bigger than half
 			let invested_number = <funding_factory::Module<T>>::get_invested_number(proposal.campaign_id);
@@ -305,7 +305,7 @@ impl<T:Trait> Module<T>{
 		let mut proposal = Self::proposals(&proposal_id);
 		let proposal_balance = proposal.amount;
 		// Ensure that there is enough money
-		let used_balance = <UsedMoneyOfFunding<T>>::get(proposal.campaign_id);
+		let used_balance = <UsedMoneyOfCampaign<T>>::get(proposal.campaign_id);
 		let total_balance = <funding_factory::Module<T>>::get_funding_total_balance(proposal.campaign_id);
 		let remain_balance = total_balance - used_balance.clone();
 		ensure!(remain_balance >= proposal_balance, "The remain balance is not enough");
@@ -315,7 +315,7 @@ impl<T:Trait> Module<T>{
 		let _ = <balances::Module<T>>::unreserve(&owner, proposal_balance.clone());
 		// Change the used amount
 		let new_used_balance = used_balance + proposal_balance;
-		<UsedMoneyOfFunding<T>>::insert(proposal.campaign_id, new_used_balance);
+		<UsedMoneyOfCampaign<T>>::insert(proposal.campaign_id, new_used_balance);
 		// Change the proposal status
 		proposal.status = 1;
 		<Proposals<T>>::insert(proposal_id.clone(), proposal.clone());
