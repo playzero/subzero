@@ -3,7 +3,7 @@ name = "subzero-cli"
 # this is the base version of subzero
 # we use semver for versioning cli and the runime:
 # NETWORK.PATCH.IMPL == 1.spec.impl
-version = "1.11.2"
+version = "1.15.0"
 authors = ["zero collective <play@zero.io>"]
 description = "videogames x metaverse"
 build = "build.rs"
@@ -109,6 +109,7 @@ node-executor = { version = "2.0.0", path = "../executor" }
 sc-cli = { version = "0.9.0", optional = true, path = "../../../client/cli" }
 frame-benchmarking-cli = { version = "3.0.0", optional = true, path = "../../../utils/frame/benchmarking-cli" }
 node-inspect = { version = "0.8.0", optional = true, path = "../inspect" }
+serde_json = "1.0"
 
 # WASM-specific dependencies
 wasm-bindgen = { version = "0.2.57", optional = true }
@@ -130,7 +131,7 @@ sc-service-test = { version = "2.0.0", path = "../../../client/service/test" }
 futures = "0.3.9"
 tempfile = "3.1.0"
 assert_cmd = "1.0"
-nix = "0.19"
+nix = "0.21"
 serde_json = "1.0"
 regex = "1"
 platforms = "1.1"
