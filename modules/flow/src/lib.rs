@@ -296,7 +296,7 @@ decl_storage! {
 		CampaignsIndex: map hasher(blake2_128_concat) T::Hash => u64;
 
 		// caller owned campaigns -> my campaigns
-		CampaignsOwnedArray get(fn campaigns_owned_index): map hasher(blake2_128_concat) T::Hash => T::Hash;
+		CampaignsOwnedArray get(fn campaigns_owned_array): map hasher(blake2_128_concat) T::Hash => Vec<T::Hash>;
 		CampaignsOwnedCount get(fn campaigns_owned_count): map hasher(blake2_128_concat) T::Hash => u64;
 		CampaignsOwnedIndex: map hasher(blake2_128_concat) (T::Hash, T::Hash) => u64;
 
@@ -807,8 +807,9 @@ impl<T: Config> Module<T> {
 		let update_campaigns_owned_count = campaigns_owned_count.checked_add(1).ok_or(Error::<T>::AddOwnedOverflow)?;
 
 		// update owned campaigns for dao
-		CampaignsOwnedArray::<T>::insert(&campaign.org, campaign.id.clone());
+		CampaignsOwnedArray::<T>::mutate( &campaign.org, |campaigns| campaigns.push(campaign.id) );
 		CampaignsOwnedCount::<T>::insert(&campaign.org, update_campaigns_count);
+		// ???
 		CampaignsOwnedIndex::<T>::insert((&campaign.org, &campaign.id), campaigns_owned_count);
 
 		// TODO: this should be a proper mechanism
