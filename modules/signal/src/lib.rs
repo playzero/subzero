@@ -133,7 +133,7 @@ const MAX_PROPOSAL_DURATION: u32 = 864000; // 60 * 60 * 24 * 30 / 3
 //
 
 decl_storage! {
-	trait Store for Module<T: Config> as Signal45 {
+	trait Store for Module<T: Config> as Signal48 {
 
 		/// Global status
 		Proposals get(fn proposals): map hasher(blake2_128_concat) T::Hash => Proposal<T::Hash, T::BlockNumber, ProposalType, VotingType>;

@@ -1,7 +1,7 @@
 [package]
 name = "module-sense"
-version = "0.1.0"
-authors = ["2075"]
+version = "1.48.0"
+authors = ["2075","GameDAO","ZERO REALITY"]
 repository = ""
 edition = "2018"
 license = "GPL-3.0-or-later"
@@ -32,8 +32,7 @@ std = [
 
 [dependencies]
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
-# serde = { version = "1.0.103", optional = true, features = ["derive"] }
-serde = { default-features = false, features = ["derive"], optional = true, version = "1.0" }
+serde = { version = "1.0.125", default-features = false, features = ["derive"], optional = true }
 
 sp-core = { version = "3.0.0", default-features = false, path = "../../primitives/core" }
 sp-runtime = { version = "3.0.0", default-features = false, path = "../../primitives/runtime" }

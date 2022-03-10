@@ -1,7 +1,7 @@
 [package]
 name = "module-flow"
-version = "1.0.1-dev"
-authors = ['zero.io','gamedao.co']
+version = "1.48.0"
+authors = ["2075","GameDAO","ZERO REALITY"]
 repository = ''
 edition = "2018"
 license = "GPL-3.0-or-later"
@@ -11,8 +11,8 @@ description = "module-flow"
 categories = ["module"]
 
 [dependencies]
-serde = { default-features = false, features = ["derive"], optional = true, version = "1.0" }
-#serde = { version = "1.0.103", optional = true }
+serde = { version = "1.0.125", default-features = false, features = ["derive"], optional = true }
+
 codec = { package = "parity-scale-codec", version = "2.0.0", default-features = false }
 num_enum = { version = "0.5.1", default-features = false }
 scale-info = { version = "1.0", default-features = false, features = ["derive"] }

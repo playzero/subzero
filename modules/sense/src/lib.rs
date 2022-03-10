@@ -91,7 +91,7 @@ pub mod module {
 	//
 
 	decl_storage! {
-		trait Store for Module<T: Config> as Sense45 {
+		trait Store for Module<T: Config> as Sense48 {
 			/// A Sense Entity
 			Sense get(fn entity): map hasher(blake2_128_concat) T::AccountId => Entity<T::AccountId,T::BlockNumber>;
 			/// XP across the metaverse

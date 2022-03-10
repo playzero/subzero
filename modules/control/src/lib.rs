@@ -192,7 +192,7 @@ pub mod module {
 	//
 
 	decl_storage! {
-		trait Store for Module<T: Config> as Control45 {
+		trait Store for Module<T: Config> as Control48 {
 
 			/// DAO by hash
 			Bodies get(fn body_by_hash): map hasher(blake2_128_concat) T::Hash => Body<T::Hash, T::AccountId, T::BlockNumber, ControlType>;
