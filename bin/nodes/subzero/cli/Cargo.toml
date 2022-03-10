@@ -3,7 +3,7 @@ name = "subzero-cli"
 # this is the base version of subzero
 # we use semver for versioning cli and the runime:
 # NETWORK.PATCH.IMPL == 1.spec.impl
-version = "1.46.0"
+version = "1.48.0"
 authors = ["zero reality <play@zero.io>"]
 description = "videogames x metaverse"
 build = "build.rs"

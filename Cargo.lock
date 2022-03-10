@@ -8724,7 +8724,7 @@ checksum = "1e81da0851ada1f3e9d4312c704aa4f8806f0f9d69faaf8df2f3464b4a9437c2"
 
 [[package]]
 name = "subzero-cli"
-version = "1.46.0"
+version = "1.48.0"
 dependencies = [
  "assert_cmd",
  "frame-benchmarking-cli",
@@ -10146,7 +10146,7 @@ dependencies = [
 
 [[package]]
 name = "zero-runtime"
-version = "1.46.0"
+version = "1.48.0"
 dependencies = [
  "frame-benchmarking",
  "frame-executive",
