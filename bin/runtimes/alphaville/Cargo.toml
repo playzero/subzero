@@ -1,6 +1,6 @@
 [package]
 name = "zero-runtime"
-version = "1.48.0"
+version = "1.50.0"
 authors = ["zero collective <play@zero.io>"]
 description = "videogames x metaverse"
 edition = "2018"

@@ -3668,7 +3668,7 @@ dependencies = [
 
 [[package]]
 name = "module-control"
-version = "0.1.0"
+version = "1.48.0"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -3690,7 +3690,7 @@ dependencies = [
 
 [[package]]
 name = "module-flow"
-version = "1.0.1-dev"
+version = "1.48.0"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -3710,7 +3710,7 @@ dependencies = [
 
 [[package]]
 name = "module-sense"
-version = "0.1.0"
+version = "1.48.0"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -3728,7 +3728,7 @@ dependencies = [
 
 [[package]]
 name = "module-signal"
-version = "1.0.1-dev"
+version = "1.48.0"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -3748,7 +3748,7 @@ dependencies = [
 
 [[package]]
 name = "module-tangram"
-version = "1.0.0"
+version = "1.48.0"
 dependencies = [
  "frame-support",
  "frame-system",

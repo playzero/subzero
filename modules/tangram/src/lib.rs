@@ -157,7 +157,7 @@ pub trait Config: frame_system::Config + balances::Config  {
 }
 
 decl_storage! {
-	trait Store for Module<T: Config> as Tangram48 {
+	trait Store for Module<T: Config> as Tangram50 {
 
 		// realm
 

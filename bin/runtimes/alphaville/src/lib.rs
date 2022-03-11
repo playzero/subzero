@@ -128,7 +128,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	// and set impl_version to 0. If only runtime
 	// implementation changes and behavior does not, then leave spec_version as
 	// is and increment impl_version.
-	spec_version: 48,
+	spec_version: 50,
 	impl_version: 0,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
@@ -1117,8 +1117,8 @@ parameter_types! {
 	// pub const Admin: EnsureRootOrGameDAOAdmin = ();
 	pub const SeedNonce: u64 = 1;
 
-	pub const MinLength: usize = 4;
-	pub const MaxLength: usize = 64;
+	pub const MinLength: usize = 2;
+	pub const MaxLength: usize = 256;
 
 	pub const MaxCampaignsPerAddress: usize = 3;
 	pub const MaxCampaignsPerBlock: usize = 3;
