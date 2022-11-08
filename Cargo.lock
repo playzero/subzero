@@ -5381,6 +5381,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "989d43012e2ca1c4a02507c67282691a0a3207f9dc67cec596b43fe925b3d325"
 
 [[package]]
+name = "platforms"
+version = "3.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e3d7ddaed09e0eb771a79ab0fd64609ba0afb0a8366421957936ad14cbd13630"
+
+[[package]]
 name = "plotters"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -8519,7 +8525,7 @@ dependencies = [
 name = "substrate-build-script-utils"
 version = "3.0.0"
 dependencies = [
- "platforms",
+ "platforms 1.1.0",
 ]
 
 [[package]]
@@ -8749,7 +8755,7 @@ dependencies = [
  "pallet-transaction-payment",
  "parity-scale-codec",
  "parking_lot 0.11.1",
- "platforms",
+ "platforms 3.0.2",
  "rand 0.7.3",
  "regex",
  "sc-authority-discovery",
@@ -10146,7 +10152,7 @@ dependencies = [
 
 [[package]]
 name = "zero-runtime"
-version = "1.48.0"
+version = "1.50.0"
 dependencies = [
  "frame-benchmarking",
  "frame-executive",
